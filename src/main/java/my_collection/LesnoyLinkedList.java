@@ -89,11 +89,11 @@ public class LesnoyLinkedList<E> {
         return -1;
     }
 
-    public E getFirst() {
+    public E getHead() {
         return head == null ? null : head.element;
     }
 
-    public E getLast() {
+    public E getTail() {
         return tail == null ? null : tail.element;
     }
 
@@ -102,7 +102,7 @@ public class LesnoyLinkedList<E> {
     }
 
     private static class LesnoyNode<E> {
-        private E element;
+        private final E element;
         private LesnoyNode<E> next;
         private LesnoyNode<E> previous;
 
