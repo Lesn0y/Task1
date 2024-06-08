@@ -29,7 +29,7 @@ public class LesnoyLinkedList<E> {
             LesnoyNode<E> newElement = new LesnoyNode<>(element);
             lastNode.next = newElement;
             newElement.previous = lastNode;
-            tail = lastNode;
+            tail = lastNode.next;
         }
         size++;
     }
