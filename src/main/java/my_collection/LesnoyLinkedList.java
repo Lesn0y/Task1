@@ -26,14 +26,16 @@ public class LesnoyLinkedList<E> {
             while (lastNode.next != null) {
                 lastNode = lastNode.next;
             }
-            lastNode.next = new LesnoyNode<>(element);
+            LesnoyNode<E> newElement = new LesnoyNode<>(element);
+            lastNode.next = newElement;
+            newElement.previous = lastNode;
             tail = lastNode;
         }
         size++;
     }
 
     public E get(int index) {
-        if (index < 0 || index > size) {
+        if (index <= 0 || index > size) {
             throw new IndexOutOfBoundsException();
         }
         LesnoyNode<E> current = head;
@@ -43,9 +45,41 @@ public class LesnoyLinkedList<E> {
         return current.element;
     }
 
+    public E removeByValue(E element) {
+        int index = indexOf(element);
+        if (index == -1) {
+            return null;
+        }
+        return remove(index);
+    }
+
+    public E remove(int index) {
+        if (index <= 0 || index > size) {
+            throw new IndexOutOfBoundsException();
+        }
+        LesnoyNode<E> current = head;
+        for (int i = 1; i < index; i++) {
+            current = current.next;
+        }
+        if (current.previous != null) {
+            LesnoyNode<E> previous = current.previous;
+            previous.next = current.next;
+        } else {
+            head = head.next;
+        }
+        if (current.next != null) {
+            LesnoyNode<E> next = current.next;
+            next.previous = current.previous;
+        } else {
+            tail = tail.previous;
+        }
+        size--;
+        return current.element;
+    }
+
     public int indexOf(E element) {
         LesnoyNode<E> current = head;
-        for (int i = 1; i < size; i++) {
+        for (int i = 1; i < size + 1; i++) {
             if (current.element.equals(element)) {
                 return i;
             } else {
