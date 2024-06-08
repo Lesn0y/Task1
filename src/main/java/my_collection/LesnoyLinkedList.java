@@ -77,6 +77,23 @@ public class LesnoyLinkedList<E> {
         return current.element;
     }
 
+    public void reverseLikeSingly() {
+        if (size <= 1) {
+            return;
+        }
+        LesnoyNode<E> lastHead = head;
+
+        LesnoyNode<E> previous = null;
+        while (head != null) {
+            LesnoyNode<E> next = head.next;
+            head.next = previous;
+            previous = head;
+            head = next;
+        }
+        head = previous;
+        tail = lastHead;
+    }
+
     public int indexOf(E element) {
         LesnoyNode<E> current = head;
         for (int i = 1; i < size + 1; i++) {
