@@ -1,6 +1,6 @@
 package algorithm;
 
-public class Algos {
+public class Sorting {
 
     public static <T extends Comparable<T>> void bubbleSort(T[] array) {
         for (int i = 0; i < array.length - 1; i++) {
