@@ -30,4 +30,16 @@ public class Sorting {
         }
     }
 
+    public static <T extends Comparable<T>> void insertion(T[] array) {
+        for (int i = 1; i < array.length; i++) {
+            int iSorted = i - 1;
+            while (iSorted > -1 && (array[iSorted].compareTo(array[iSorted + 1]) > 0)) {
+                T temp = array[iSorted];
+                array[iSorted] = array[iSorted + 1];
+                array[iSorted + 1] = temp;
+                iSorted--;
+            }
+        }
+    }
+
 }
